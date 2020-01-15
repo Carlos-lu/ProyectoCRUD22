@@ -10,7 +10,7 @@ namespace Academico
 {
     public static class EstudianteDAO
     {
-        private  static string cadenaConexion = @"server=PC1\SQLEXPRESS2016; database= TI2019; user id=sa; password=Lab123456";
+        private  static string cadenaConexion = @"server=L-PCT-116\SQLEXPRESS2016; database= TI2019; user id=sa; password=Lab123456";
         public static int guardar(Estudiante estudiante)
         {
             
@@ -101,14 +101,14 @@ namespace Academico
             conn.Close();
             return x;
         }
-        public static int Update(Estudiante estudiante)
+        public static int actualizar(Estudiante estudiante)
         {
 
             //definimos un objeo conexion 
             SqlConnection conn = new SqlConnection(cadenaConexion);
 
-            string sql = "UPDATE Estudiantes SET apellidos=@apellidos, nombres=@nombres, genero=@genero, " + 
-                "fechaNacimiento=@fechaNacimiento, email=@email WHERE matricula=@matricula";
+            string sql = "UPDATE Estudiantes SET apellidos=@apellidos,nombres=@nombres,genero=@genero, " + 
+                "fechaNacimiento=@fechaNacimiento,email=@email WHERE matricula=@matricula";
             //definimos un comando 
             SqlCommand comando = new SqlCommand(sql, conn);
             //vonfiguramos los parametros
@@ -119,11 +119,10 @@ namespace Academico
             comando.Parameters.AddWithValue("@nombres", estudiante.Nombres);
             comando.Parameters.AddWithValue("@genero", estudiante.Genero);
             comando.Parameters.AddWithValue("@fechaNacimiento", estudiante.FechaNacimiento.Date);
-            comando.Parameters.AddWithValue("@email", estudiante.Correo);
-            conn.Open();
-            int s = comando.ExecuteNonQuery(); //ejecutamos el comando
+            comando.Parameters.AddWithValue("@email", estudiante.Correo);            
+            int x = comando.ExecuteNonQuery(); //ejecutamos el comando
             conn.Close();
-            return s;
+            return x;
         }
 
     }

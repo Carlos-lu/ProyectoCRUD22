@@ -67,28 +67,28 @@ namespace ProyectoCRUD2
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            int s = 0;
-            Academico.Estudiante estudiantes = new Academico.Estudiante();
-            estudiantes.Matricula = Convert.ToString(this.cmbMatricula.SelectedValue);
-            estudiantes.Apellidos = this.txtApellidos.Text;
-            estudiantes.Nombres = this.txtNombres.Text;
-            estudiantes.FechaNacimiento = Convert.ToDateTime(this.txtfechaNacimiento.Text);
-            estudiantes.Correo = this.txtCorreo.Text;
+            int x = 0;
+            Academico.Estudiante estudiante = new Academico.Estudiante();
+            estudiante.Matricula = Convert.ToString(this.cmbMatricula.SelectedValue);
+            estudiante.Apellidos = this.txtApellidos.Text;
+            estudiante.Nombres = this.txtNombres.Text;
+            estudiante.FechaNacimiento = Convert.ToDateTime(this.txtfechaNacimiento.Text);
+            estudiante.Correo = this.txtCorreo.Text;
             string sexo = "F";
             if(this.cmbGenero.Text.ToString().Equals("Masculino"))
             {
                 sexo = "M";
             }
-            estudiantes.Genero = sexo;
+            estudiante.Genero = sexo;
 
             try
             {
-                s = Academico.EstudianteDAO.Update(estudiantes);
-                MessageBox.Show("Registros actualizados: " + s.ToString());
+                x = Academico.EstudianteDAO.actualizar(estudiante);
+                MessageBox.Show("Registros actualizados: " + x.ToString());
             }
-            catch (Exception es)
+            catch (Exception ex)
             {
-                MessageBox.Show(es.Message.ToString());
+                MessageBox.Show(ex.Message.ToString());
             }
             DataTable td = Academico.EstudianteDAO.getNombresCompletos();
             this.cmbMatricula.DataSource = td;

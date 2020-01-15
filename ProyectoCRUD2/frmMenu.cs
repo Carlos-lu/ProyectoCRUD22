@@ -12,7 +12,7 @@ namespace ProyectoCRUD2
 {
     public partial class frmMenu : Form
     {
-        private int childFormNumber = 0;
+        
 
         public frmMenu()
         {
