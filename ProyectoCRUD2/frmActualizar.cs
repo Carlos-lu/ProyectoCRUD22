@@ -64,5 +64,38 @@ namespace ProyectoCRUD2
                 buscar();
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            int s = 0;
+            Academico.Estudiante estudiantes = new Academico.Estudiante();
+            estudiantes.Matricula = Convert.ToString(this.cmbMatricula.SelectedValue);
+            estudiantes.Apellidos = this.txtApellidos.Text;
+            estudiantes.Nombres = this.txtNombres.Text;
+            estudiantes.FechaNacimiento = Convert.ToDateTime(this.txtfechaNacimiento.Text);
+            estudiantes.Correo = this.txtCorreo.Text;
+            string sexo = "F";
+            if(this.cmbGenero.Text.ToString().Equals("Masculino"))
+            {
+                sexo = "M";
+            }
+            estudiantes.Genero = sexo;
+
+            try
+            {
+                s = Academico.EstudianteDAO.Update(estudiantes);
+                MessageBox.Show("Registros actualizados: " + s.ToString());
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show(es.Message.ToString());
+            }
+            DataTable td = Academico.EstudianteDAO.getNombresCompletos();
+            this.cmbMatricula.DataSource = td;
+            this.cmbMatricula.DisplayMember = "Estudiantes";
+            this.cmbMatricula.ValueMember = "Matricula";
+
+
+        }
     }
 }

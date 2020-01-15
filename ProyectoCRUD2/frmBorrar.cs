@@ -58,6 +58,7 @@ namespace ProyectoCRUD2
                 DataTable dt = Academico.EstudianteDAO.getNombresCompletos();
                 this.cmbMatricula.DataSource = dt;
             }
+            MessageBox.Show("Registro eliminado exitosamente ......");
         }
     }
 }

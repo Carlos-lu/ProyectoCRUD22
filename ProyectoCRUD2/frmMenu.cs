@@ -109,5 +109,15 @@ namespace ProyectoCRUD2
             frm1.MdiParent = this;
             frm1.Show();
         }
+
+        private void printPreviewToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
