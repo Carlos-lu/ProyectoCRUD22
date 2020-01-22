@@ -36,5 +36,20 @@ namespace ProyectoCRUD2
         {
             Application.Exit();
         }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+           bool existe = Academico.UsuariosDAO.validaUsuario(this.txtUsuario.Text, this.txtClave.Text);
+            if (existe)
+            {
+                this.Visible = false;
+                frmMenu frm1 = new frmMenu();
+                frm1.Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuarios y/o la clave incorrectas");
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Academico
                  "where login=@login and clave=@clave";
 
             SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
-            ad.SelectCommand.Parameters.AddWithValue("@idLogin", usuario);
+            ad.SelectCommand.Parameters.AddWithValue("@Login", usuario);
             ad.SelectCommand.Parameters.AddWithValue("@clave", clave);
             DataTable dt = new DataTable();
             ad.Fill(dt);
