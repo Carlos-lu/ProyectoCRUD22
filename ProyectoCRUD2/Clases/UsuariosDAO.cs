@@ -1,16 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoCRUD2.Clases
+namespace Academico
 {
-    class UsuariosDAO
+    public static class UsuariosDAO
     {
+
         private static string cadenaConexion = @"server=L-PCT-116\SQLEXPRESS2016; database= TI2019; user id=sa; password=Lab123456";
-        public static int guardar(Usuarios usuarios)
+
+        public static bool validaUsuario(string usuario, string clave)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            string sql = "select idLogin,nombreCompleto " +
+                 " from usuarios " +
+                 "where login=@login and clave=@clave";
+
+            SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
+            ad.SelectCommand.Parameters.AddWithValue("@idLogin", usuario);
+            ad.SelectCommand.Parameters.AddWithValue("@clave", clave);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+            if(dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
+       /* public static int guardar(Usuarios usuarios)
         {
 
             //definimos un objeo conexion 
@@ -33,6 +58,6 @@ namespace ProyectoCRUD2.Clases
             int x = comando.ExecuteNonQuery(); //ejecutamos el comando
             conn.Close();
             return x;
-        }
+        }*/
     }
 }

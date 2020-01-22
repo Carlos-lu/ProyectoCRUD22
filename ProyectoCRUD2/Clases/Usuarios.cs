@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoCRUD2.Clases
+namespace Academico
 {
-    class Usuarios
+    public class Usuarios
     {
         public String idLogin { get; set; }
         public String nombreCompleto { get; set; }
