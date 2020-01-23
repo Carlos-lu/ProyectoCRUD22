@@ -35,11 +35,32 @@ namespace ProyectoCRUD2.Adm
                 this.txtNombreCompleto.Focus();
                 return;
             }
-        }
+            Academico.Usuarios usuario = new Academico.Usuarios();
+            usuario.nombreCompleto = this.txtNombreCompleto.Text;
+            usuario.tipoUsuario = this.cmbTipoUsuario.Text;
+            usuario.clave = this.txtClave.Text;
+            usuario.Login = this.txtLogin.Text;
 
+            int x = Academico.UsuariosDAO.guardar(usuario);
+            if(x>0)
+            {
+                MessageBox.Show("Usuario guardado con exito.....");
+            }
+
+            else
+            {
+                MessageBox.Show("No se agregar el usuario....");
+            }
+
+        }
+        private void cargarGridUsuario()
+        {
+            this.dgUsuarios.DataSource = Academico.UsuariosDAO.getDatos();
+        }
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
             Encerar();
+            cargarGridUsuario();
         }
         private void Encerar()
         {
